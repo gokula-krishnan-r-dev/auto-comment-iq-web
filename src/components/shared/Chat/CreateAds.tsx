@@ -181,8 +181,8 @@ const CreateAds = ({ roomId }: any) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-8 px-1"
           >
-            {dynamicFormData.map((item) => (
-              <div className="">
+            {dynamicFormData.map((item, index) => (
+              <div key={index} className="">
                 {item.type === "img" ? (
                   <FormField
                     key={item.name}

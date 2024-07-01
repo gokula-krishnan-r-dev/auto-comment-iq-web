@@ -24,7 +24,7 @@ const TagAi = dynamic(() => import("@/components/shared/tab-ai"));
 const Descriptionai = dynamic(
   () => import("@/components/shared/description-ai")
 );
-export const fetchVideoById = async (videoId: string) => {
+const fetchVideoById = async (videoId: string) => {
   try {
     const response = await axios.get(
       `http://localhost:3000/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
@@ -114,8 +114,9 @@ const Page: React.FC<PageProps> = ({ params }) => {
                   <AlertDialog>
                     <AlertDialogTrigger className="gap-2 mt-6 flex items-center flex-wrap">
                       {title &&
-                        title?.map((item: any) => (
+                        title?.map((item: any, index: number) => (
                           <button
+                            key={index}
                             onClick={() => setSelectedTitle(item?.title)}
                             className="px-6 py-3 bg-white rounded-full"
                           >

@@ -194,7 +194,10 @@ const ChatHeader = ({
               </PopoverTrigger>
               <PopoverContent className="ml-52 space-y-2">
                 {numberOfOnline?.user?.map((user: any, index: any) => (
-                  <CircleButton className="flex py-2 px-2 items-center gap-2">
+                  <CircleButton
+                    key={index}
+                    className="flex py-2 px-2 items-center gap-2"
+                  >
                     <Image
                       className="rounded-full"
                       src={user?.profile?.picture}

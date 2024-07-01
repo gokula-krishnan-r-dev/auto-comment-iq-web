@@ -33,7 +33,7 @@ const JobExtra = ({ job }: any) => {
         <div className=""></div>
         <div className="mt-4 flex items-center gap-3">
           {SelectionData.map((data: any, index: any) => (
-            <div className="w-full">
+            <div key={index} className="w-full">
               <button
                 onClick={() => setIsDescription(data?.value)}
                 className={`${

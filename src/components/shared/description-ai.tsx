@@ -50,8 +50,11 @@ const Descriptionai = ({ des }: any) => {
           </h2>
           <div className="text-start">
             {description &&
-              description?.map((item: any) => (
-                <button className="px-6 py-3 mt-8 bg-white rounded-3xl">
+              description?.map((item: any, index: number) => (
+                <button
+                  key={index}
+                  className="px-6 py-3 mt-8 bg-white rounded-3xl"
+                >
                   <h2 className="text-base font-semibold text-gray-800 dark:text-white">
                     {item?.description}
                     <div

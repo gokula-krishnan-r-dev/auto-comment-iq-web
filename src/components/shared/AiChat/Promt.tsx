@@ -176,8 +176,8 @@ const PromtUI = () => {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-12 px-12 mt-4">
-              {defaultMessageData.map((data) => (
-                <DailyContent data={data} />
+              {defaultMessageData.map((data, index) => (
+                <DailyContent key={index} data={data} />
               ))}
             </div>
             {/* End Title */}
@@ -186,6 +186,7 @@ const PromtUI = () => {
               {Array.isArray(response) &&
                 response.map((res: any, index: number) => (
                   <RespoDesign
+                    key={index}
                     handlePromptSubmit={handlePromptSubmit}
                     isAuthor={res?.isAuthor}
                     content={res?.text.toString()}

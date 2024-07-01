@@ -46,7 +46,7 @@ const PollCardView = ({ polls }: any) => {
       toast.success(res.data.message);
       PollFetch(roomId, setPoll);
 
-      reFetchChat({ setChat, roomId, navigate, firstFetch, setFirstFetch });
+      reFetchChat({ setChat, roomId });
       setIsWriteComment(false);
     });
   };

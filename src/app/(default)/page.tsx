@@ -4,7 +4,7 @@ import UserCollaboration from "@/components/shared/collaboration/UserCollaborati
 import axios from "axios";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const [collabData, setCollabData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
@@ -38,4 +38,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

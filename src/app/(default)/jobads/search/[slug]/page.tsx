@@ -10,7 +10,7 @@ import Link from "next/link";
 import React from "react";
 import { useQuery } from "react-query";
 
-const page = () => {
+const Page = () => {
   const [activeJob, setActiveJob] = React.useState<any>(0);
   const { searchTerm } = useJobSearch();
   const getJobads = async (searchTerm = "") => {
@@ -82,4 +82,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

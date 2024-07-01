@@ -10,7 +10,7 @@ import DailyCard from "@/components/shared/DailyIdea/daily-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 const buttonLabels = ["Daily ideas", "Saved ideas", "Deleted ideas"];
 
-const page = () => {
+const Page = () => {
   const { authId, channelId } = useAuth();
   const [isGrid, setIsGrid] = useState<string>("");
   const [tab, setTab] = useState<string>("Daily ideas");
@@ -193,4 +193,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

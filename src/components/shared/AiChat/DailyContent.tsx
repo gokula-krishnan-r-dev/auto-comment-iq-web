@@ -13,8 +13,11 @@ const DailyContent = ({ data }: MessageData | any) => {
           </h1>
         </div>
         <div className="flex mt-2 items-start flex-col">
-          {data.options.map((option: any) => (
-            <button className="px-4 py-2 mb-2 w-full bg-gray-100 rounded-3xl">
+          {data.options.map((option: any, index: number) => (
+            <button
+              key={index}
+              className="px-4 py-2 mb-2 w-full bg-gray-100 rounded-3xl"
+            >
               <p className="text-gray-800 text-xs font-semibold dark:text-gray-200">
                 {option}
               </p>

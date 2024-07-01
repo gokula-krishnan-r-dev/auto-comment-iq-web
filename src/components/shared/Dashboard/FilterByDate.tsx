@@ -19,7 +19,7 @@ const FilterByDate: React.FC<FilterByDateProps> = ({
     <div className="gap-2 flex items-center">
       {options.map((option, index) => {
         return (
-          <div className="">
+          <div key={index} className="">
             {option === "custom" ? (
               <DatePickerWithRange
                 button={

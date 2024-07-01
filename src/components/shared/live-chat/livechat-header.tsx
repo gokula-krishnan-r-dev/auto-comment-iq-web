@@ -12,7 +12,7 @@ const LiveChatHeader = ({ rooms }: any) => {
       <CarouselLive autoscroll>
         {/* @ts-ignore */}
         {rooms.map((room, index) => (
-          <CarouselItem className="basis-full ">
+          <CarouselItem key={index} className="basis-full ">
             <div
               className="h-[500px] bg-cover rounded-3xl bg-center relative"
               style={{

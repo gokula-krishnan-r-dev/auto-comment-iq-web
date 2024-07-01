@@ -42,7 +42,9 @@ const PollCard = ({ poll, setPoll, roomId }: any) => {
             <ScrollArea className="h-[60vh] rounded-3xl scrollbar-hide">
               <div className="">
                 {poll?.map((poll: any, indexV: number) => {
-                  return <PollCardView polls={poll} indexV={indexV} />;
+                  return (
+                    <PollCardView key={indexV} polls={poll} indexV={indexV} />
+                  );
                 })}
               </div>
             </ScrollArea>

@@ -44,7 +44,7 @@ const RoomListPage = () => {
         <LiveChatHeader rooms={rooms} />
         <CarouselLive autoscroll className="basis-auto py-3">
           {rooms?.map((room: any, index: number) => (
-            <CarouselItem className="basis-auto">
+            <CarouselItem key={index} className="basis-auto">
               <Link
                 href={`/livechat/${room.roomId}`}
                 className="flex gap-3 bg-white hover:border-blue-500 rounded-full border px-2 py-1 items-center"

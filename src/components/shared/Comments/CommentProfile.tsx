@@ -11,7 +11,7 @@ const CommentProfile = ({ profileImg }: any) => {
     <button>
       <div className="flex -space-x-4 rtl:space-x-reverse">
         {profileImg?.slice(0, 4).map((img: any, index: number) => (
-          <HoverCard>
+          <HoverCard key={index}>
             <HoverCardTrigger>
               <Image
                 width={32}

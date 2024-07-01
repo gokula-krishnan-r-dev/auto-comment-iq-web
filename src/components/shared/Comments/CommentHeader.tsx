@@ -1,12 +1,21 @@
-import { fetchVideoById } from "@/app/(default)/dashboard/[slug]/page";
-import { Button } from "@/components/ui/button";
 import { CardHeader } from "@/components/ui/card";
-import { YoutubeIcon } from "lucide-react";
-import Image from "next/image";
+import axios from "@/lib/axios";
 import Link from "next/link";
 import React from "react";
 import { useQuery } from "react-query";
+import { toast } from "sonner";
+import { apiKey } from "../Dashboard/VideoSection";
+const fetchVideoById = async (videoId: string) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
+    );
 
+    return response?.data?.data;
+  } catch (error) {
+    toast.error("Failed to fetch video");
+  }
+};
 const CommentHeader = ({ videoId }: any) => {
   const {
     data: video,

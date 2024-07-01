@@ -11,7 +11,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 
-const page = () => {
+const Page = () => {
   const [subCount, setSubCount] = React.useState<any>(0);
 
   useEffect(() => {
@@ -73,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -35,7 +35,10 @@ const ShowEmoji: React.FC<{ data: EmojiData }> = ({ data }) => {
         </HoverCardTrigger>
         <HoverCardContent className="duration-100 ml-44 max-w-xl w-full space-y-2 rounded-3xl">
           {data?.emotes?.map((emote, index) => (
-            <button className="flex w-full hover:bg-gray-100 duration-300 rounded-full items-center gap-4 justify-between">
+            <button
+              key={index}
+              className="flex w-full hover:bg-gray-100 duration-300 rounded-full items-center gap-4 justify-between"
+            >
               <div className="flex items-center gap-2">
                 <Image
                   objectFit="cover"

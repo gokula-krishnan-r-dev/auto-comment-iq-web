@@ -17,7 +17,7 @@ const SearchChannelList = dynamic(
   () => import("@/components/shared/collaboration/SearchChannelList")
 );
 
-export const fetchSearchResults = async (query: string) => {
+const fetchSearchResults = async (query: string) => {
   try {
     const response: any = await axios.get(
       `http://localhost:3000/v1/youtube-analytics/search/channel/${query}`
@@ -29,7 +29,7 @@ export const fetchSearchResults = async (query: string) => {
   }
 };
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState<string>("mrbeast");
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
@@ -301,4 +301,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

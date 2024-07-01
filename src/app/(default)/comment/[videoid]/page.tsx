@@ -170,7 +170,7 @@ export default function Page({ params }: { params: { videoid: string } }) {
   );
 }
 
-export async function AiResponseAPI(commentText: string) {
+async function AiResponseAPI(commentText: string) {
   try {
     const response = await axios.get("http://localhost:3000/api/llama2", {
       params: {
@@ -184,7 +184,7 @@ export async function AiResponseAPI(commentText: string) {
   }
 }
 
-export async function translationText(comment: string, language: string) {
+async function translationText(comment: string, language: string) {
   const response = await axios.get(
     `http://127.0.0.1:8000/translate?text=${comment}&target_language=${language}`
   );

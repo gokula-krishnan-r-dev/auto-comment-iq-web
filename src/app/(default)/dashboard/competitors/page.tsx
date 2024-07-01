@@ -34,7 +34,7 @@ const buttonLabels = [
   },
 ];
 
-const page = () => {
+const Page = () => {
   const [isGrid, setIsGrid] = useState<string>("");
   const [tab, setTab] = useState<number>(0);
   const { authId } = useAuth();
@@ -115,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

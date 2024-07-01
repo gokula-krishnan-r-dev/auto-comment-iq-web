@@ -55,7 +55,7 @@ const CreatePolls = ({ socket }: any) => {
           pollId: resID,
         });
       });
-      reFetchChat({ setChat, roomId, navigate, firstFetch, setFirstFetch });
+      reFetchChat({ setChat, roomId });
       toast.success("Poll Created");
     }
   };

@@ -47,7 +47,7 @@ const AddEmote = ({ messageId }: any) => {
   const handletoSendEmote = (emote: string) => {
     socket.emit("add-emote", { userId: authId, roomId, messageId, emote });
     setTimeout(() => {
-      reFetchChat({ setChat, roomId, navigate, firstFetch, setFirstFetch });
+      reFetchChat({ setChat, roomId });
     }, 500);
   };
 
@@ -64,8 +64,9 @@ const AddEmote = ({ messageId }: any) => {
             <div className="flex items-center gap-2">
               {!addmore ? (
                 <>
-                  {emohis.map((emoji) => (
+                  {emohis.map((emoji, index) => (
                     <PopoverClose
+                      key={index}
                       onClick={() => handletoSendEmote(emoji?.icon)}
                       className="!text-2xl bg-gray-100 rounded-full px-3 py-2"
                     >

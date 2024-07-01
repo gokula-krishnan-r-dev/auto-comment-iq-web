@@ -7,7 +7,7 @@ import CircleButton from "@/components/ui/circle-button";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 
-export function fetchVideo(q: string, page: any) {
+function fetchVideo(q: string, page: any) {
   let url = `http://localhost:3000/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=10000&q=${q}`;
 
   if (page) {

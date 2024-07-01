@@ -3,16 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { useQuery } from "react-query";
-import { fetchSearchResults } from "../page";
 import { useAuth } from "@/components/provider/AuthProvider";
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import Loading from "@/components/ui/loading";
 import Error from "@/components/ui/error";
-
+const fetchSearchResults = async (query: string) => {
+  try {
+    const response: any = await axios.get(
+      `http://localhost:3000/v1/youtube-analytics/search/channel/${query}`
+    );
+    return response.data;
+  } catch (error: any) {
+    console.error("Error fetching search results:", error.message);
+    toast.error("Error fetching search results: " + error.message);
+  }
+};
 export default function Page({ params }: { params: { channelId: string } }) {
   const [message, setMessage] = useState<string>("");
+  const { authId } = useAuth();
   const {
     data: searchResults,
     isLoading,
@@ -21,7 +31,6 @@ export default function Page({ params }: { params: { channelId: string } }) {
   } = useQuery("searchResults", () => fetchSearchResults(params.channelId));
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
-  const { authId } = useAuth();
   const handleSend = () => {
     const post = axios.post("http://localhost:3000/v1/collaboration", {
       title: "Collaboration Request",
