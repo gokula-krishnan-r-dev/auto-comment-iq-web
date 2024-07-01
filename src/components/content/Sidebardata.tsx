@@ -1,0 +1,141 @@
+import {
+  BarChart,
+  BarChart3,
+  BarChart4,
+  Bot,
+  ChefHat,
+  LayoutDashboard,
+  Lightbulb,
+  LineChart,
+  Megaphone,
+  MessageCircle,
+  Tv2,
+  UsersRound,
+  Video,
+  WrapText,
+  Youtube,
+} from "lucide-react";
+
+export const SidebarItems = [
+  {
+    title: "Dashboard",
+    tag: "dashboard",
+    icon: <LayoutDashboard />, // Replace with your SVG string
+    path: "/dashboard",
+    url: "https://example.com/home",
+  },
+  {
+    title: "Videos",
+    tag: "videos",
+    icon: <Youtube />, // Replace with your SVG string
+    path: "/video",
+  },
+  {
+    title: "Chat",
+    tag: "chat",
+    icon: <MessageCircle />,
+    path: "/livechat",
+    url: "https://example.com/item3",
+  },
+  {
+    title: "Jobs",
+    tag: "jobs",
+    icon: <Megaphone />,
+    path: "/jobads/search/demo",
+    url: "https://example.com/item3",
+  },
+  {
+    title: "You tuber AI Chating",
+    tag: "jobs",
+    icon: <Bot />,
+    path: "/dashboard/chat-ai",
+    url: "https://example.com/item3",
+  },
+  {
+    title: "Collaboration with You tuber",
+    tag: "collaboration",
+    icon: <UsersRound />,
+    path: "/collaboration/you-tuber",
+    url: "https://example.com/item3",
+  },
+  {
+    title: "Find Channel Name",
+    tag: "channel_name",
+    icon: <Tv2 />,
+    path: "/dashboard/ai-channel-name",
+    url: "https://example.com/item4",
+    isImportant: true,
+  },
+  {
+    title: "ai description generator",
+    tag: "ai-description-generator",
+    icon: <WrapText />,
+    path: "/dashboard/ai-description-generator",
+    url: "https://example.com/item5",
+    isImportant: true,
+  },
+  {
+    title: "ai comment generator",
+    tag: "ai-comment-generator",
+    icon: <WrapText />,
+    path: "/dashboard/ai-comment-generator",
+    url: "https://example.com/item6",
+    isImportant: true,
+  },
+  {
+    title: "ai tags generator",
+    tag: "ai-tags-generator",
+    icon: <WrapText />,
+    path: "/dashboard/ai-tags-generator",
+    url: "https://example.com/item7",
+    isImportant: true,
+  },
+  {
+    title: "ai title generator",
+    tag: "ai-title-generator",
+    icon: <WrapText />,
+    path: "/dashboard/ai-title-generator",
+    url: "https://example.com/item8",
+    isImportant: true,
+  },
+  {
+    title: "ai video idea generator",
+    tag: "ai-video-idea-generator",
+    icon: <WrapText />,
+    path: "/dashboard/ai-video-idea-generator",
+    url: "https://example.com/item9",
+    isImportant: true,
+  },
+  {
+    title: "ai Daily Ideas",
+    tag: "ai-daily-ideas",
+    icon: <Lightbulb />,
+
+    path: "/dashboard/daily-ideas",
+    isImportant: false,
+  },
+  {
+    title: "ai Competitors",
+    tag: "ai-competitors",
+    icon: <BarChart4 />,
+
+    path: "/dashboard/competitors",
+    isImportant: false,
+  },
+  {
+    title: "ai Youtube Analysis",
+    tag: "ai-youtube-analysis",
+    icon: <LineChart />,
+
+    path: "/dashboard/youtube-analysis",
+    isImportant: false,
+  },
+  {
+    title: "Live Stream Chat",
+    tag: "live-stream-chat",
+    icon: <ChefHat />,
+
+    path: "/dashboard/live-stream-chat",
+    isImportant: false,
+  },
+];

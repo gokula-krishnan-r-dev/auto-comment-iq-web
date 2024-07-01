@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "sonner";
+import Sidebar from "@/components/shared/Sidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={"bg-custom-gray"}>
+        <main className="flex h-screen">
+          <Sidebar />
+          {children}
+        </main>
+        <Toaster richColors />
+      </body>
     </html>
   );
 }

@@ -1,0 +1,57 @@
+export const AdsFormData = [
+  {
+    title: "Ads Title",
+    description: "This is the title of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_title",
+  },
+  {
+    title: "Ads Description",
+    description: "This is the description of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_description",
+  },
+  {
+    title: "Ads Price",
+    description: "This is the price of the ad.",
+    tag: "text",
+    name: "ads_price",
+  },
+  {
+    title: "Ads Location",
+    description: "This is the location of the ad.",
+    tag: "text",
+    required: false,
+    name: "ads_location",
+  },
+  {
+    title: "Ads Contact",
+    description: "This is the contact of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_contact",
+  },
+  {
+    title: "Ads Category",
+    description: "This is the category of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_category",
+  },
+  {
+    title: "Ads Company",
+    description: "This is the company of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_company",
+  },
+  {
+    title: "Ads Email",
+    description: "This is the email of the ad.",
+    tag: "text",
+    required: true,
+    name: "ads_email",
+  },
+];
