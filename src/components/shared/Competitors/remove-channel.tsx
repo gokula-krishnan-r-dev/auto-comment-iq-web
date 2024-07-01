@@ -13,7 +13,7 @@ const RemoveChannel = ({ chnnaleIds, refetchChannleIds }: any) => {
   const handleAddChannel = async (id: string) => {
     // Implement the logic to remove the channel
     const response: any = await axios.delete(
-      `http://localhost:3000/v1/competitor/delete/${id}`
+      `https://autocommentapi.vercel.app/v1/competitor/delete/${id}`
     );
     if (response.status === 200) {
       refetchChannleIds();

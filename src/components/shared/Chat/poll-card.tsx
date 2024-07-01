@@ -33,7 +33,7 @@ const PollCardView = ({ polls }: any) => {
 
   const handleVote = (option: string, pollId: any, type: string) => {
     const response = axios.post(
-      `http://localhost:3000/v1/poll/${pollId}/vote`,
+      `https://autocommentapi.vercel.app/v1/poll/${pollId}/vote`,
       {
         option: option,
         user: authId,

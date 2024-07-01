@@ -20,7 +20,7 @@ const AddVideo = () => {
     refetch: refetchVideoData,
   } = useQuery("fetchVideo", async () => {
     const res = await axios.get(
-      `http://localhost:3000/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
+      `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
     );
     return res.data;
   });

@@ -12,7 +12,7 @@ const AiStriker: React.FC<AiStrikerProps> = ({ handleImages }) => {
 
   const fetchData = async () => {
     try {
-      const apiUrl = `http://localhost:3000/api/striker?message=${encodeURIComponent(
+      const apiUrl = `https://autocommentapi.vercel.app/api/striker?message=${encodeURIComponent(
         message
       )}`;
       const result = await axios.get(apiUrl);

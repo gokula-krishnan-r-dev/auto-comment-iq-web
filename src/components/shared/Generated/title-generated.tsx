@@ -46,7 +46,9 @@ const TitleGeneraedWithAI = ({
   const generateAiReply = (input: any) => {
     setIsLoading(true);
     axios
-      .get(`http://localhost:3000/api/${url}?message=${input}&count=10`)
+      .get(
+        `https://autocommentapi.vercel.app/api/${url}?message=${input}&count=10`
+      )
       .then((response) => {
         console.log("response", response);
         setAiReply(response.data);
@@ -61,7 +63,9 @@ const TitleGeneraedWithAI = ({
 
   const refetchAiReply = () => {
     axios
-      .get(`http://localhost:3000/api/${url}?message=${inputValue}&count=10`)
+      .get(
+        `https://autocommentapi.vercel.app/api/${url}?message=${inputValue}&count=10`
+      )
       .then((response) => {
         setAiReply(response.data);
       });

@@ -14,7 +14,7 @@ const HeroD = ({ subCountData, data }: any) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/auth/users/${authId}`
+          `https://autocommentapi.vercel.app/auth/users/${authId}`
         );
         setUserData(response.data);
       } catch (error) {

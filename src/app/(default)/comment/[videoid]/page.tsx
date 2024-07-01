@@ -38,7 +38,7 @@ export default function Page({ params }: { params: { videoid: string } }) {
 
   const getNegativeComments = async () => {
     const response = await fetch(
-      `http://localhost:3000/v1/negative/comments?videoId=${params.videoid}&sentiment=${selectedType}&language=${language}`
+      `https://autocommentapi.vercel.app/v1/negative/comments?videoId=${params.videoid}&sentiment=${selectedType}&language=${language}`
     );
     if (!response.ok) toast.error("Failed to fetch negative comments");
 
@@ -172,11 +172,14 @@ export default function Page({ params }: { params: { videoid: string } }) {
 
 async function AiResponseAPI(commentText: string) {
   try {
-    const response = await axios.get("http://localhost:3000/api/llama2", {
-      params: {
-        message: `commentMessage='${commentText}'`,
-      },
-    });
+    const response = await axios.get(
+      "https://autocommentapi.vercel.app/api/llama2",
+      {
+        params: {
+          message: `commentMessage='${commentText}'`,
+        },
+      }
+    );
     return response.data.response;
   } catch (error) {
     console.error("Error from AiResponseAPI:", error);

@@ -9,13 +9,13 @@ const DailyCard = ({ ideas }: any) => {
   const { authId } = useAuth();
   const { data: savedideas, refetch } = useQuery("savedideas", async () => {
     const res = await fetch(
-      `http://localhost:3000/v1/daily/ideas/save/${authId}`
+      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${authId}`
     );
     return res.json().then((data) => data.ideas);
   });
   const handletoSaveIdea = async (ideaId: any, isAccepted: boolean) => {
     const response = await axios.post(
-      `http://localhost:3000/v1/daily/ideas/save/${ideaId}/${authId}`,
+      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${ideaId}/${authId}`,
       {
         isAccepted: isAccepted,
       }

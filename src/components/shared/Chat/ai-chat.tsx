@@ -9,7 +9,7 @@ const AiChat: React.FC<any> = ({ setMessage }: any) => {
     if (!inputMessage.trim()) return;
 
     try {
-      const apiUrl = `http://localhost:3000/api/llama2?message=${encodeURIComponent(
+      const apiUrl = `https://autocommentapi.vercel.app/api/llama2?message=${encodeURIComponent(
         inputMessage
       )}`;
       const result = await axios.get(apiUrl);

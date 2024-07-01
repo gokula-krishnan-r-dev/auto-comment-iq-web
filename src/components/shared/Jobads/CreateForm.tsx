@@ -113,12 +113,15 @@ const DynamicForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       // Make sure to replace 'your-api-endpoint' with your actual API endpoint
-      const response = await axios.post("http://localhost:3000/v1/jobads", {
-        ...values,
-        userId: authId,
-        user: authId,
-        type: "job",
-      });
+      const response = await axios.post(
+        "https://autocommentapi.vercel.app/v1/jobads",
+        {
+          ...values,
+          userId: authId,
+          user: authId,
+          type: "job",
+        }
+      );
       if (response.data) {
         console.log("Form submitted successfully:", response.data);
         toast.success("Form submitted successfully");

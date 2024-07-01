@@ -10,7 +10,7 @@ export const channelId = "UCayJBKourqXMEmkJzGPzrXA";
 // export const channelId = "UCnjU1FHmao9YNfPzE039YTw";
 export function fetchVideo() {
   return fetch(
-    `http://localhost:3000/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
+    `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
   ).then((res) => res.json());
 }
 const VideoSection = () => {

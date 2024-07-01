@@ -42,7 +42,7 @@ const ChatMessageWraper = ({
     refetch: refetchAiReply,
   } = useQuery(["ai-reply", data?.message], async () => {
     const response = await axios.get(
-      `http://localhost:3000/api/llama2?message=${data?.message}`
+      `https://autocommentapi.vercel.app/api/llama2?message=${data?.message}`
     );
     return response.data;
   });

@@ -32,14 +32,17 @@ const CreatePolls = ({ socket }: any) => {
     if (isCorrent) {
       toast.error("Please fill all the fields");
     } else {
-      const response = axios.post("http://localhost:3000/v1/poll/create", {
-        roomId: roomId,
-        user: authId,
-        userId: authId,
-        question: Questions,
-        options: pollOptions,
-        type: selectPoll,
-      });
+      const response = axios.post(
+        "https://autocommentapi.vercel.app/v1/poll/create",
+        {
+          roomId: roomId,
+          user: authId,
+          userId: authId,
+          question: Questions,
+          options: pollOptions,
+          type: selectPoll,
+        }
+      );
       console.log(response);
       response.then((res) => {
         socket.emit("add-poll", {

@@ -74,7 +74,7 @@ const FileDrag: React.FC<StoryPopupProps> = ({ children, setFile }) => {
       //   }
       // }
       // try {
-      //   const response = await fetch("http://localhost:3000/", {
+      //   const response = await fetch("https://autocommentapi.vercel.app/", {
       //     method: "POST",
       //     body: formData,
       //   });

@@ -20,7 +20,7 @@ const SearchChannelList = dynamic(
 const fetchSearchResults = async (query: string) => {
   try {
     const response: any = await axios.get(
-      `http://localhost:3000/v1/youtube-analytics/search/channel/${query}`
+      `https://autocommentapi.vercel.app/v1/youtube-analytics/search/channel/${query}`
     );
     return response.data;
   } catch (error: any) {
@@ -36,7 +36,7 @@ const Page = () => {
   const fetchChannelLogo = async (username: any) => {
     const apiKey = "AIzaSyDHc-B04CEu1nzBj5cOf9m0ZRNuV9Gu6-g";
 
-    const url = `http://localhost:3000/v1/channels?part=snippet&key=${apiKey}&forUsername=${username}`;
+    const url = `https://autocommentapi.vercel.app/v1/channels?part=snippet&key=${apiKey}&forUsername=${username}`;
 
     try {
       const response = await fetch(url);

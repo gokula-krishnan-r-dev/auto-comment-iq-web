@@ -13,7 +13,7 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/v1/collaboration"
+          "https://autocommentapi.vercel.app/v1/collaboration"
         );
         setCollabData(response.data);
         setLoading(false);

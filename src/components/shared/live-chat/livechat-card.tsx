@@ -11,7 +11,7 @@ const LiveChatCard = ({ room, index }: any) => {
     refetch,
   } = useQuery(["onlineUser", room?.roomId], async () => {
     const response = await axios.get(
-      `http://localhost:3000/v1/online-user/${room?.roomId}`
+      `https://autocommentapi.vercel.app/v1/online-user/${room?.roomId}`
     );
     return response.data;
   });

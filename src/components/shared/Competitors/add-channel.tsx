@@ -27,7 +27,7 @@ const AddChannel = ({ refetchChannleIds }: any) => {
   const fetchSearchResults = async (query: string) => {
     try {
       const response: any = await axios.get(
-        `http://localhost:3000/v1/youtube-analytics/search/channel/${query}`
+        `https://autocommentapi.vercel.app/v1/youtube-analytics/search/channel/${query}`
       );
       return response.data;
     } catch (error: any) {
@@ -48,7 +48,7 @@ const AddChannel = ({ refetchChannleIds }: any) => {
     channelLogo: string
   ) => {
     const response: any = await axios.post(
-      "http://localhost:3000/v1/competitor/save",
+      "https://autocommentapi.vercel.app/v1/competitor/save",
       {
         userId: authId,
         channelId: channelId,

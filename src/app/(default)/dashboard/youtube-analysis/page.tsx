@@ -61,7 +61,7 @@ const Page: React.FC = () => {
     "fetchView",
     async () => {
       const res = await axios.get(
-        `http://localhost:3000/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}${country === "all" ? "" : `&filter=country==${country}`}`,
         {

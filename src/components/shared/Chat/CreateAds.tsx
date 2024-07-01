@@ -161,7 +161,10 @@ const CreateAds = ({ roomId }: any) => {
       formData.append("room", roomId);
 
       // Make axios POST request with FormData
-      const res = await axios.post("http://localhost:3000/v1/ads", formData);
+      const res = await axios.post(
+        "https://autocommentapi.vercel.app/v1/ads",
+        formData
+      );
       if (res.status === 200 || res.status === 201) {
         toast.success("Ad created successfully");
       }

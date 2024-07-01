@@ -14,7 +14,9 @@ const Page = () => {
   const [activeJob, setActiveJob] = React.useState<any>(0);
   const { searchTerm } = useJobSearch();
   const getJobads = async (searchTerm = "") => {
-    const res = await fetch(`http://localhost:3000/v1/jobads?q=${searchTerm}`);
+    const res = await fetch(
+      `https://autocommentapi.vercel.app/v1/jobads?q=${searchTerm}`
+    );
     return res.json();
   };
 

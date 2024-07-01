@@ -19,7 +19,9 @@ const RoomStatus = () => {
   } = useQuery(
     "rooms",
     async () => {
-      const response = await axios.get(`http://localhost:3000/v1/rooms`);
+      const response = await axios.get(
+        `https://autocommentapi.vercel.app/v1/rooms`
+      );
       return response.data.rooms.sort(
         (a: any, b: any) =>
           new Date(b.isLeft).getTime() - new Date(a.isLeft).getTime()

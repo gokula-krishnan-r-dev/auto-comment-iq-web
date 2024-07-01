@@ -27,7 +27,7 @@ const Descriptionai = dynamic(
 const fetchVideoById = async (videoId: string) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
+      `https://autocommentapi.vercel.app/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
     );
 
     return response?.data?.data;
@@ -62,7 +62,7 @@ const Page: React.FC<PageProps> = ({ params }) => {
     async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/llama13?message=${videoData?.items[0].snippet?.title}&system="re write a YouTube video title"`
+          `https://autocommentapi.vercel.app/api/llama13?message=${videoData?.items[0].snippet?.title}&system="re write a YouTube video title"`
         );
         return res.data;
       } catch (error) {

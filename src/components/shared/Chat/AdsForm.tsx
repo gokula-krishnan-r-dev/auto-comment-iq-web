@@ -64,7 +64,7 @@ const AdsForm = ({ roomId, file }: any) => {
 
       // Use axios.post with formData as the second parameter
       const response = await axios.post(
-        "http://localhost:3000/v1/story/upload/file",
+        "https://autocommentapi.vercel.app/v1/story/upload/file",
         formData
       );
 

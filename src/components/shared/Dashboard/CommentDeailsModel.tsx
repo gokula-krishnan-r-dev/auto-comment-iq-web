@@ -89,7 +89,7 @@ const CommentDeailsModel = ({ videoId }: any) => {
 
   // const sendComment = async () => {
   //   try {
-  //     const response = await fetch("http://localhost:3000/v1/reply/comment", {
+  //     const response = await fetch("https://autocommentapi.vercel.app/v1/reply/comment", {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const CommentDeailsModel = ({ videoId }: any) => {
       };
       // Make a POST request to create a room
       const response = await axios.post(
-        "http://localhost:3000/v1/create-room",
+        "https://autocommentapi.vercel.app/v1/create-room",
         roomData
       );
       router.push(`/livechat/${videoId}`);

@@ -15,7 +15,7 @@ import { toast } from "sonner";
 export default function Page() {
   const getNegativeComments = async () => {
     const response = await fetch(
-      "http://localhost:3000/v1/negative/comments?videoId=Fk-LOFBZo9o"
+      "https://autocommentapi.vercel.app/v1/negative/comments?videoId=Fk-LOFBZo9o"
     );
     if (!response.ok) toast.error("Failed to fetch negative comments");
 

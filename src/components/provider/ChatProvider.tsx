@@ -64,7 +64,7 @@ const ChatProvider = ({ children, roomId }: any) => {
   async function fetchPins() {
     try {
       const response = await axios.get(
-        `http://localhost:3000/v1/message/pin/${roomId}`
+        `https://autocommentapi.vercel.app/v1/message/pin/${roomId}`
       );
       setPins(response.data[response.data.length - 1]);
     } catch (error) {

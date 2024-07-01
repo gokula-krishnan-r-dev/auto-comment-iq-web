@@ -16,14 +16,16 @@ const Page = () => {
   const [tab, setTab] = useState<string>("Daily ideas");
 
   const { data: ideas, isLoading } = useQuery("ideas", async () => {
-    const res = await fetch(`http://localhost:3000/v1/daily/ideas/${authId}`);
+    const res = await fetch(
+      `https://autocommentapi.vercel.app/v1/daily/ideas/${authId}`
+    );
     return res.json().then((data) => data.ideas);
   });
 
   const { data: channelDescription, isLoading: isChannelDescriptionLoading } =
     useQuery("channelDescription", async () => {
       const res = await fetch(
-        `http://localhost:3000/v1/channels?id=${channelId}&part=snippet&key=AIzaSyBltuLl1h_5USy6dSnD_X9erU6PiOD-xgI`
+        `https://autocommentapi.vercel.app/v1/channels?id=${channelId}&part=snippet&key=AIzaSyBltuLl1h_5USy6dSnD_X9erU6PiOD-xgI`
       );
       return res.json().then((data) => data.data.items[0].snippet.description);
     });
@@ -32,7 +34,7 @@ const Page = () => {
     "savedideas",
     async () => {
       const res = await fetch(
-        `http://localhost:3000/v1/daily/ideas/save/${authId}`
+        `https://autocommentapi.vercel.app/v1/daily/ideas/save/${authId}`
       );
       return res.json().then((data) => data.ideas);
     }

@@ -13,7 +13,7 @@ const Descriptionai = ({ des }: any) => {
     async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/llama13/description?message=${des}&system="re write a YouTube video description in 1 and make it more design and add more link and more look desgin and more sentence"`
+          `https://autocommentapi.vercel.app/api/llama13/description?message=${des}&system="re write a YouTube video description in 1 and make it more design and add more link and more look desgin and more sentence"`
         );
         return res.data;
       } catch (error) {

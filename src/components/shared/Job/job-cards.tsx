@@ -10,7 +10,7 @@ const JobCards = ({ jobads, setActiveJob, refetch }: any) => {
   const queryClient = useQueryClient();
   const getBookmark = async () => {
     const res = await fetch(
-      `http://localhost:3000/v1/jobads/bookmarks/${authId}`
+      `https://autocommentapi.vercel.app/v1/jobads/bookmarks/${authId}`
     );
     return res.json();
   };
@@ -23,7 +23,7 @@ const JobCards = ({ jobads, setActiveJob, refetch }: any) => {
 
   const handleSaveBookmark = async (jobId: any) => {
     const response = await axios.post(
-      "http://localhost:3000/v1/jobads/bookmarks",
+      "https://autocommentapi.vercel.app/v1/jobads/bookmarks",
       {
         user: authId,
         userId: authId,

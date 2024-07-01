@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 
 function fetchVideo(q: string, page: any) {
-  let url = `http://localhost:3000/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=10000&q=${q}`;
+  let url = `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=10000&q=${q}`;
 
   if (page) {
     url += `&pageToken=${page}`;

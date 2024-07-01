@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 
 const fetchData = async (input: string) => {
   const response = await axios.get(
-    `http://localhost:3000/api/video-content?message=${input}&count=10`
+    `https://autocommentapi.vercel.app/api/video-content?message=${input}&count=10`
   );
   return response.data;
 };

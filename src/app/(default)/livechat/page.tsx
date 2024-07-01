@@ -32,7 +32,9 @@ const RoomListPage = () => {
     isLoading,
     isError,
   } = useQuery("rooms", async () => {
-    const response = await axios.get(`http://localhost:3000/v1/rooms`);
+    const response = await axios.get(
+      `https://autocommentapi.vercel.app/v1/rooms`
+    );
     return response.data.rooms;
   });
   if (isLoading) return <div>Loading...</div>;

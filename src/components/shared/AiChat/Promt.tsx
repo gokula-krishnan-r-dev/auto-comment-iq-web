@@ -141,7 +141,7 @@ const PromtUI = () => {
     });
 
     axios
-      .post(`http://localhost:3000/v1/ai-chat/llama70B`, {
+      .post(`https://autocommentapi.vercel.app/v1/ai-chat/llama70B`, {
         message,
       })
       .then((response) => {

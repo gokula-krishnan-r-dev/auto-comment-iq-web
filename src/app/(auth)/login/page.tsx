@@ -24,7 +24,7 @@ const page = () => {
             </h1>
 
             <Link
-              href="http://localhost:3000/auth/google"
+              href="https://autocommentapi.vercel.app/auth/google"
               className="flex border hover:bg-gray-100 px-24 items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300"
             >
               <img

@@ -44,7 +44,7 @@ const ChatMessage = ({
   async function fetchPins(roomId: string) {
     try {
       const response = await axios.get(
-        `http://localhost:3000/v1/message/pin/${roomId}`
+        `https://autocommentapi.vercel.app/v1/message/pin/${roomId}`
       );
       setPins(response.data);
     } catch (error) {
