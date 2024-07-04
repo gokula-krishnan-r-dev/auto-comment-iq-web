@@ -4,12 +4,12 @@ import { CardFooter, Card } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import dynamic from "next/dynamic";
-import axios from "axios";
 import { CommentType } from "@/components/shared/Comments/CommentFIlter";
 import { languageTypes } from "@/components/content/language";
 import Loading from "@/components/ui/loading";
 import Error from "@/components/ui/error";
 import { toast } from "sonner";
+import axios from "@/lib/axios";
 
 const CommentHeader = dynamic(
   () => import("@/components/shared/Comments/CommentHeader")
@@ -37,12 +37,11 @@ export default function Page({ params }: { params: { videoid: string } }) {
   };
 
   const getNegativeComments = async () => {
-    const response = await fetch(
-      `https://autocommentapi.vercel.app/v1/negative/comments?videoId=${params.videoid}&sentiment=${selectedType}&language=${language}`
+    const response = await axios.get(
+      `/negative/comments?videoId=${params.videoid}&sentiment=${selectedType}&language=${language}`
     );
-    if (!response.ok) toast.error("Failed to fetch negative comments");
 
-    return response.json();
+    return response.data;
   };
 
   const { data, isLoading, isError, refetch } = useQuery(
@@ -172,14 +171,11 @@ export default function Page({ params }: { params: { videoid: string } }) {
 
 async function AiResponseAPI(commentText: string) {
   try {
-    const response = await axios.get(
-      "https://autocommentapi.vercel.app/api/llama2",
-      {
-        params: {
-          message: `commentMessage='${commentText}'`,
-        },
-      }
-    );
+    const response = await axios.get("/api/llama2", {
+      params: {
+        message: `commentMessage='${commentText}'`,
+      },
+    });
     return response.data.response;
   } catch (error) {
     console.error("Error from AiResponseAPI:", error);

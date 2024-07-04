@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useChat } from "@/components/provider/ChatProvider";
 import dynamic from "next/dynamic";
+import axios from "@/lib/axios";
 
 const MessageChat = dynamic(
   () => import("@/components/shared/Chat/message-chat"),
@@ -43,9 +43,7 @@ const ChatMessage = ({
 
   async function fetchPins(roomId: string) {
     try {
-      const response = await axios.get(
-        `https://autocommentapi.vercel.app/v1/message/pin/${roomId}`
-      );
+      const response = await axios.get(`/message/pin/${roomId}`);
       setPins(response.data);
     } catch (error) {
       console.error("Error fetching pins:", error);

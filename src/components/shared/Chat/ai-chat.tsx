@@ -1,5 +1,5 @@
+import axios from "@/lib/axios";
 import React, { useState } from "react";
-import axios from "axios";
 
 const AiChat: React.FC<any> = ({ setMessage }: any) => {
   const [inputMessage, setInputMessage] = useState<string>("");
@@ -9,9 +9,7 @@ const AiChat: React.FC<any> = ({ setMessage }: any) => {
     if (!inputMessage.trim()) return;
 
     try {
-      const apiUrl = `https://autocommentapi.vercel.app/api/llama2?message=${encodeURIComponent(
-        inputMessage
-      )}`;
+      const apiUrl = `/api/llama2?message=${encodeURIComponent(inputMessage)}`;
       const result = await axios.get(apiUrl);
 
       // Assuming the response is a text message from the AI

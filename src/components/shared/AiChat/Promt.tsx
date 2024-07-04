@@ -1,9 +1,9 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React, { useEffect, useRef, useState } from "react";
 import RespoDesign from "./respoDesign";
-import axios from "axios";
 import { toast } from "sonner";
 import DailyContent from "./DailyContent";
+import axios from "@/lib/axios";
 export interface MessageData {
   title: string;
   content: string;
@@ -141,7 +141,7 @@ const PromtUI = () => {
     });
 
     axios
-      .post(`https://autocommentapi.vercel.app/v1/ai-chat/llama70B`, {
+      .post(`/ai-chat/llama70B`, {
         message,
       })
       .then((response) => {

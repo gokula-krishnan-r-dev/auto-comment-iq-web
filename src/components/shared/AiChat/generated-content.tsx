@@ -1,12 +1,12 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { Clipboard } from "lucide-react";
 import React, { use, useEffect } from "react";
 import { useQuery } from "react-query";
 
 const fetchData = async (input: string) => {
   const response = await axios.get(
-    `https://autocommentapi.vercel.app/api/video-content?message=${input}&count=10`
+    `/api/video-content?message=${input}&count=10`
   );
   return response.data;
 };

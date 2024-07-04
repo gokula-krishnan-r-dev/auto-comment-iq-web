@@ -4,17 +4,18 @@ import VideoCard from "@/components/shared/Dashboard/VideoCard";
 import VideoNav from "@/components/shared/Dashboard/VideoNav";
 import { apiKey, channelId } from "@/components/shared/Dashboard/VideoSection";
 import CircleButton from "@/components/ui/circle-button";
+import axios from "@/lib/axios";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 
 function fetchVideo(q: string, page: any) {
-  let url = `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=10000&q=${q}`;
+  let url = `/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=10000&q=${q}`;
 
   if (page) {
     url += `&pageToken=${page}`;
   }
 
-  return fetch(url).then((res) => res.json());
+  return axios.get(url).then((res) => res.data);
 }
 
 const Page = () => {

@@ -1,8 +1,8 @@
 "use client";
 import CircleButton from "@/components/ui/circle-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "@/lib/axios";
 import { cn } from "@/lib/utils";
-import axios from "axios";
 import { Clipboard, RotateCcw } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -46,9 +46,7 @@ const TitleGeneraedWithAI = ({
   const generateAiReply = (input: any) => {
     setIsLoading(true);
     axios
-      .get(
-        `https://autocommentapi.vercel.app/api/${url}?message=${input}&count=10`
-      )
+      .get(`/api/${url}?message=${input}&count=10`)
       .then((response) => {
         console.log("response", response);
         setAiReply(response.data);
@@ -62,13 +60,9 @@ const TitleGeneraedWithAI = ({
   };
 
   const refetchAiReply = () => {
-    axios
-      .get(
-        `https://autocommentapi.vercel.app/api/${url}?message=${inputValue}&count=10`
-      )
-      .then((response) => {
-        setAiReply(response.data);
-      });
+    axios.get(`/api/${url}?message=${inputValue}&count=10`).then((response) => {
+      setAiReply(response.data);
+    });
   };
 
   return (

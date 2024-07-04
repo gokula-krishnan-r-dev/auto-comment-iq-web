@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AdsFormData } from "@/components/content/AdsForm";
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
+import axios from "@/lib/axios";
 const dynamicFormSchema = z.object(
   AdsFormData.reduce((acc, field) => {
     acc[field.name] = field.required
@@ -63,10 +63,7 @@ const AdsForm = ({ roomId, file }: any) => {
       }
 
       // Use axios.post with formData as the second parameter
-      const response = await axios.post(
-        "https://autocommentapi.vercel.app/v1/story/upload/file",
-        formData
-      );
+      const response = await axios.post("/story/upload/file", formData);
 
       console.log(response.data); // Assuming you want to log the response data
 

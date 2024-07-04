@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/lib/axios";
 import Image from "next/image";
 import React from "react";
 import { useQuery } from "react-query";
@@ -19,9 +19,7 @@ const RoomStatus = () => {
   } = useQuery(
     "rooms",
     async () => {
-      const response = await axios.get(
-        `https://autocommentapi.vercel.app/v1/rooms`
-      );
+      const response = await axios.get(`/rooms`);
       return response.data.rooms.sort(
         (a: any, b: any) =>
           new Date(b.isLeft).getTime() - new Date(a.isLeft).getTime()

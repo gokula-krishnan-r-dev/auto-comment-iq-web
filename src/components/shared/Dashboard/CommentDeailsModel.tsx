@@ -13,7 +13,7 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 import { timeAgo } from "@/lib/TimeAgo";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 const fetchVideoDetails = async (videoId: any) => {
@@ -152,10 +152,7 @@ const CommentDeailsModel = ({ videoId }: any) => {
         user: authId,
       };
       // Make a POST request to create a room
-      const response = await axios.post(
-        "https://autocommentapi.vercel.app/v1/create-room",
-        roomData
-      );
+      const response = await axios.post("/create-room", roomData);
       router.push(`/livechat/${videoId}`);
       // Handle success
       console.log("Room Created:", response.data);

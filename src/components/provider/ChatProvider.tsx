@@ -5,9 +5,9 @@ import React, {
   useContext,
   useRef,
 } from "react";
-import axios from "axios";
 import io from "socket.io-client";
 import { useAuth } from "./AuthProvider";
+import axios from "@/lib/axios";
 
 type ChatContextType = {
   pins: any;
@@ -63,9 +63,7 @@ const ChatProvider = ({ children, roomId }: any) => {
   const { authId } = useAuth();
   async function fetchPins() {
     try {
-      const response = await axios.get(
-        `https://autocommentapi.vercel.app/v1/message/pin/${roomId}`
-      );
+      const response = await axios.get(`/message/pin/${roomId}`);
       setPins(response.data[response.data.length - 1]);
     } catch (error) {
       console.error("Error fetching pins:", error);

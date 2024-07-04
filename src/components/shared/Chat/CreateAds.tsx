@@ -16,9 +16,9 @@ import {
 import { Input } from "@/components/ui/input";
 import React, { use, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/components/provider/AuthProvider";
+import axios from "@/lib/axios";
 
 const dynamicFormData = [
   {
@@ -161,10 +161,7 @@ const CreateAds = ({ roomId }: any) => {
       formData.append("room", roomId);
 
       // Make axios POST request with FormData
-      const res = await axios.post(
-        "https://autocommentapi.vercel.app/v1/ads",
-        formData
-      );
+      const res = await axios.post("/ads", formData);
       if (res.status === 200 || res.status === 201) {
         toast.success("Ad created successfully");
       }

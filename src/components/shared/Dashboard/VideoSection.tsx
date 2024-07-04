@@ -4,14 +4,15 @@ import VideoNav from "./VideoNav";
 import VideoCard from "./VideoCard";
 import { useQuery } from "react-query";
 import SearchVideo from "./SearchVideo";
+import axios from "@/lib/axios";
 export const apiKey = "AIzaSyDAIbJTbNIebqH1aw78RK19q13btquteWM";
 export const channelId = "UCayJBKourqXMEmkJzGPzrXA";
-// export const channelId = "UCX6OQ3DkcsbYNE6H8uQQuVA";
-// export const channelId = "UCnjU1FHmao9YNfPzE039YTw";
 export function fetchVideo() {
-  return fetch(
-    `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
-  ).then((res) => res.json());
+  const res = axios.get(
+    `/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
+  );
+
+  return res.then((res) => res.data);
 }
 const VideoSection = () => {
   const [comments, setComments] = useState<any>();

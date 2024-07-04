@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import axios from "axios";
+import axios from "@/lib/axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -20,7 +20,7 @@ const SearchChannelList = dynamic(
 const fetchSearchResults = async (query: string) => {
   try {
     const response: any = await axios.get(
-      `https://autocommentapi.vercel.app/v1/youtube-analytics/search/channel/${query}`
+      `/youtube-analytics/search/channel/${query}`
     );
     return response.data;
   } catch (error: any) {
@@ -36,11 +36,11 @@ const Page = () => {
   const fetchChannelLogo = async (username: any) => {
     const apiKey = "AIzaSyDHc-B04CEu1nzBj5cOf9m0ZRNuV9Gu6-g";
 
-    const url = `https://autocommentapi.vercel.app/v1/channels?part=snippet&key=${apiKey}&forUsername=${username}`;
+    const url = `/channels?part=snippet&key=${apiKey}&forUsername=${username}`;
 
     try {
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await axios.get(url);
+      const data = await response.data;
       setSelectedChannel(data?.data?.items[0]);
     } catch (error: any) {
       // throw new Error("Error fetching channel logo: " + error.message);

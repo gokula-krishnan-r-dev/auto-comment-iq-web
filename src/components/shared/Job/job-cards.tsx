@@ -1,5 +1,5 @@
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { Bookmark } from "lucide-react";
 import React from "react";
 import { useQuery, useQueryClient } from "react-query";
@@ -9,10 +9,8 @@ const JobCards = ({ jobads, setActiveJob, refetch }: any) => {
   const { authId } = useAuth();
   const queryClient = useQueryClient();
   const getBookmark = async () => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/jobads/bookmarks/${authId}`
-    );
-    return res.json();
+    const res = await axios.get(`/jobads/bookmarks/${authId}`);
+    return res.data;
   };
 
   const {
@@ -22,14 +20,11 @@ const JobCards = ({ jobads, setActiveJob, refetch }: any) => {
   } = useQuery("bookmark", getBookmark);
 
   const handleSaveBookmark = async (jobId: any) => {
-    const response = await axios.post(
-      "https://autocommentapi.vercel.app/v1/jobads/bookmarks",
-      {
-        user: authId,
-        userId: authId,
-        bookmarks: jobId,
-      }
-    );
+    const response = await axios.post("/jobads/bookmarks", {
+      user: authId,
+      userId: authId,
+      bookmarks: jobId,
+    });
 
     if (response.data.code === 201 || response.data.code === 200) {
       refetchBookmarks();

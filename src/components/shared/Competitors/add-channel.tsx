@@ -7,12 +7,12 @@ import {
 
 const CircleButton = dynamic(() => import("@/components/ui/circle-button"));
 import { useQuery } from "react-query";
-import axios from "axios";
 import { Command } from "lucide-react";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { Close } from "@radix-ui/react-popover";
+import axios from "@/lib/axios";
 
 const AddChannel = ({ refetchChannleIds }: any) => {
   const { authId } = useAuth();
@@ -27,7 +27,7 @@ const AddChannel = ({ refetchChannleIds }: any) => {
   const fetchSearchResults = async (query: string) => {
     try {
       const response: any = await axios.get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics/search/channel/${query}`
+        `/youtube-analytics/search/channel/${query}`
       );
       return response.data;
     } catch (error: any) {
@@ -47,15 +47,12 @@ const AddChannel = ({ refetchChannleIds }: any) => {
     channelName: string,
     channelLogo: string
   ) => {
-    const response: any = await axios.post(
-      "https://autocommentapi.vercel.app/v1/competitor/save",
-      {
-        userId: authId,
-        channelId: channelId,
-        channelName: channelName,
-        channelAvatar: channelLogo,
-      }
-    );
+    const response: any = await axios.post("/competitor/save", {
+      userId: authId,
+      channelId: channelId,
+      channelName: channelName,
+      channelAvatar: channelLogo,
+    });
     if (response.status === 201) {
       // Add channel logic
       refetchChannleIds(); // Refetch channel ids

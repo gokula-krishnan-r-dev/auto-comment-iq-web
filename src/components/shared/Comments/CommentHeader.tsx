@@ -8,7 +8,7 @@ import { apiKey } from "../Dashboard/VideoSection";
 const fetchVideoById = async (videoId: string) => {
   try {
     const response = await axios.get(
-      `https://autocommentapi.vercel.app/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
+      `/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${videoId}`
     );
 
     return response?.data?.data;

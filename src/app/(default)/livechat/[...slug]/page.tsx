@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
-import axios from "axios";
 
 const Chat = dynamic(() => import("@/components/shared/Chat/Chat"), {
   ssr: false,
@@ -10,6 +9,7 @@ import { useAuth } from "@/components/provider/AuthProvider";
 import { ChatProvider, useChat } from "@/components/provider/ChatProvider";
 import dynamic from "next/dynamic";
 import { apiKey } from "@/components/shared/Dashboard/VideoSection";
+import axios from "@/lib/axios";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const roomId = params.slug[0];
@@ -22,14 +22,12 @@ export default function Page({ params }: { params: { slug: string } }) {
     isError,
     refetch,
   } = useQuery(["room", roomId], async () => {
-    const response = await axios.get(
-      `https://autocommentapi.vercel.app/v1/room/${roomId}`
-    );
+    const response = await axios.get(`/room/${roomId}`);
     return response.data;
   });
 
   const fetchVideoDetails = async (roomId: any) => {
-    const url = `https://autocommentapi.vercel.app/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${roomId}&part=player&part=liveStreamingDetails`;
+    const url = `/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${roomId}&part=player&part=liveStreamingDetails`;
 
     try {
       const response = await axios.get(url);
@@ -42,7 +40,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   };
 
   const fetchChannelLogo = async (channelId: any) => {
-    const url = `https://autocommentapi.vercel.app/v1/channels?part=snippet&key=${apiKey}&id=${channelId}`;
+    const url = `/channels?part=snippet&key=${apiKey}&id=${channelId}`;
 
     try {
       const response = await fetch(url);
@@ -73,10 +71,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       };
 
       // Make a POST request to create a room
-      const response = await axios.post(
-        "https://autocommentapi.vercel.app/v1/create-room",
-        roomData
-      );
+      const response = await axios.post("/create-room", roomData);
       if (response.data) {
         refetch();
       }

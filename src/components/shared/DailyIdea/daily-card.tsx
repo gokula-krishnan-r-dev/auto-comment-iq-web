@@ -1,6 +1,6 @@
 import { useAuth } from "@/components/provider/AuthProvider";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from "axios";
+import axios from "@/lib/axios";
 import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "sonner";
@@ -8,18 +8,13 @@ import { toast } from "sonner";
 const DailyCard = ({ ideas }: any) => {
   const { authId } = useAuth();
   const { data: savedideas, refetch } = useQuery("savedideas", async () => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${authId}`
-    );
-    return res.json().then((data) => data.ideas);
+    const res = await axios.get(`/daily/ideas/save/${authId}`);
+    return res.data.ideas;
   });
   const handletoSaveIdea = async (ideaId: any, isAccepted: boolean) => {
-    const response = await axios.post(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${ideaId}/${authId}`,
-      {
-        isAccepted: isAccepted,
-      }
-    );
+    const response = await axios.post(`/daily/ideas/save/${ideaId}/${authId}`, {
+      isAccepted: isAccepted,
+    });
     await response.data;
     refetch();
     if (response.status === 201 && response.data.SaveIdea.isAccepted) {

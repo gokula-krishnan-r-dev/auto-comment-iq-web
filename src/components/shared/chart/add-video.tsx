@@ -6,12 +6,12 @@ import {
 } from "@/components/ui/popover";
 import CircleButton from "@/components/ui/circle-button";
 import { useQuery } from "react-query";
-import axios from "axios";
 import { apiKey, channelId } from "../Dashboard/VideoSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import Loading from "@/components/ui/loading";
 import Error from "@/components/ui/error";
+import axios from "@/lib/axios";
 const AddVideo = () => {
   const {
     data: video,
@@ -20,7 +20,7 @@ const AddVideo = () => {
     refetch: refetchVideoData,
   } = useQuery("fetchVideo", async () => {
     const res = await axios.get(
-      `https://autocommentapi.vercel.app/v1/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
+      `/search?order=date&part=snippet&channelId=${channelId}&key=${apiKey}&maxResults=2000`
     );
     return res.data;
   });

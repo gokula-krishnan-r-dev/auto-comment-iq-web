@@ -1,5 +1,5 @@
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
+import axios from "@/lib/axios";
 import Image from "next/image";
 import React from "react";
 import { toast } from "sonner";
@@ -9,23 +9,20 @@ const SearchChannelList = ({ selectedChannel, setSelectedChannel }: any) => {
   const [message, setMessage] = React.useState("");
   const handleSend = () => {
     // console.log("message", message);
-    const post = axios.post(
-      "https://autocommentapi.vercel.app/v1/collaboration",
-      {
-        title: "Collaboration Request",
-        message: message,
-        channel: true,
-        channel_id: selectedChannel?.id,
-        channel_name: selectedChannel?.snippet?.title,
-        channel_logo: selectedChannel?.snippet?.thumbnails?.high?.url,
-        user: authId,
-        userId: authId,
-        isReviewed: false,
-        isViewed: false,
-        isAccepted: false,
-        isRejected: false,
-      }
-    );
+    const post = axios.post("/collaboration", {
+      title: "Collaboration Request",
+      message: message,
+      channel: true,
+      channel_id: selectedChannel?.id,
+      channel_name: selectedChannel?.snippet?.title,
+      channel_logo: selectedChannel?.snippet?.thumbnails?.high?.url,
+      user: authId,
+      userId: authId,
+      isReviewed: false,
+      isViewed: false,
+      isAccepted: false,
+      isRejected: false,
+    });
     post.then((res) => {
       console.log("res", res);
       toast.success("Collaboration Request Sent");

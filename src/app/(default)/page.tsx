@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import UserCollaboration from "@/components/shared/collaboration/UserCollaboration";
-import axios from "axios";
 import Link from "next/link";
+import axios from "@/lib/axios";
 
 const Page = () => {
   const [collabData, setCollabData] = useState([]);
@@ -12,9 +12,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://autocommentapi.vercel.app/v1/collaboration"
-        );
+        const response = await axios.get("/collaboration");
         setCollabData(response.data);
         setLoading(false);
       } catch (error: any) {

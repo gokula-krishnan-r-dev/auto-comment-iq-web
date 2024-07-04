@@ -56,7 +56,7 @@ const CreateRoom: React.FC = () => {
   const SearchVideo = data?.items ?? [];
 
   const fetchVideoDetails = async (roomId: any) => {
-    const url = `https://autocommentapi.vercel.app/v1/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${roomId}&part=player&part=liveStreamingDetails`;
+    const url = `/videos?order=date&part=snippet&key=${apiKey}&maxResults=2000&id=${roomId}&part=player&part=liveStreamingDetails`;
 
     try {
       const response = await axios.get(url);
@@ -69,7 +69,7 @@ const CreateRoom: React.FC = () => {
   };
 
   const fetchChannelLogo = async (channelId: any) => {
-    const url = `https://autocommentapi.vercel.app/v1/channels?part=snippet&key=${apiKey}&id=${channelId}`;
+    const url = `/channels?part=snippet&key=${apiKey}&id=${channelId}`;
 
     try {
       const response = await fetch(url);
@@ -100,10 +100,7 @@ const CreateRoom: React.FC = () => {
       };
 
       // Make a POST request to create a room
-      const response = await axios.post(
-        "https://autocommentapi.vercel.app/v1/create-room",
-        roomData
-      );
+      const response = await axios.post("/create-room", roomData);
       if (response.data) {
         router.push("/livehat/" + videoId);
       }

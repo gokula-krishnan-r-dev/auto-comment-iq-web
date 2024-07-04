@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import Viewchart from "@/components/shared/Dashboard/Viewchart";
 import { useQuery } from "react-query";
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
 import FilterByDate, {
   DateOption,
 } from "@/components/shared/Dashboard/FilterByDate";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "@/lib/axios";
 
 const heroNames = ["subscribersGained", "views", "likes", "dislikes"];
 
@@ -34,7 +34,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     "fetchView",
     async () => {
       const res = await axios.get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}&filter=video==${params.slug}`,
         {
@@ -54,7 +54,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   function fetchChartdata() {
     axios
       .get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}&filter=video==${params.slug}`,
         {
@@ -69,7 +69,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
     axios
       .get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}&filter=video==${params.slug}`,
         {

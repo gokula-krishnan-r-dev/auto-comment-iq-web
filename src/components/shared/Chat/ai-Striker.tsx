@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Send } from "lucide-react";
+import axios from "@/lib/axios";
 
 interface AiStrikerProps {
   handleImages: (images: string[]) => void;
@@ -12,9 +12,7 @@ const AiStriker: React.FC<AiStrikerProps> = ({ handleImages }) => {
 
   const fetchData = async () => {
     try {
-      const apiUrl = `https://autocommentapi.vercel.app/api/striker?message=${encodeURIComponent(
-        message
-      )}`;
+      const apiUrl = `/api/striker?message=${encodeURIComponent(message)}`;
       const result = await axios.get(apiUrl);
 
       // Assuming the response is an array of image URLs

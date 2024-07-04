@@ -10,13 +10,14 @@ import React, { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from "axios";
+
 import { useAuth } from "@/components/provider/AuthProvider";
 import { toast } from "sonner";
 import { DialogClose } from "@/components/ui/dialog";
 import { reFetchChat } from "@/lib/chatLib";
 import { useChat } from "@/components/provider/ChatProvider";
 import { useRouter } from "next/navigation";
+import axios from "@/lib/axios";
 
 const CreatePolls = ({ socket }: any) => {
   const { authId } = useAuth();
@@ -32,17 +33,14 @@ const CreatePolls = ({ socket }: any) => {
     if (isCorrent) {
       toast.error("Please fill all the fields");
     } else {
-      const response = axios.post(
-        "https://autocommentapi.vercel.app/v1/poll/create",
-        {
-          roomId: roomId,
-          user: authId,
-          userId: authId,
-          question: Questions,
-          options: pollOptions,
-          type: selectPoll,
-        }
-      );
+      const response = axios.post("/poll/create", {
+        roomId: roomId,
+        user: authId,
+        userId: authId,
+        question: Questions,
+        options: pollOptions,
+        type: selectPoll,
+      });
       console.log(response);
       response.then((res) => {
         socket.emit("add-poll", {

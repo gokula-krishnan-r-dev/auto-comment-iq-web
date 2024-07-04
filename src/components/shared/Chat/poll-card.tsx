@@ -1,8 +1,8 @@
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useChat } from "@/components/provider/ChatProvider";
 import { timeAgo } from "@/lib/TimeAgo";
+import axios from "@/lib/axios";
 import { PollFetch, reFetchChat } from "@/lib/chatLib";
-import axios from "axios";
 import { Vote, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -32,15 +32,12 @@ const PollCardView = ({ polls }: any) => {
   const { authId } = useAuth();
 
   const handleVote = (option: string, pollId: any, type: string) => {
-    const response = axios.post(
-      `https://autocommentapi.vercel.app/v1/poll/${pollId}/vote`,
-      {
-        option: option,
-        user: authId,
-        userId: authId,
-        type: type,
-      }
-    );
+    const response = axios.post(`/poll/${pollId}/vote`, {
+      option: option,
+      user: authId,
+      userId: authId,
+      type: type,
+    });
     console.log(response);
     response.then((res) => {
       toast.success(res.data.message);

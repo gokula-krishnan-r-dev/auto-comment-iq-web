@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 import { useQuery } from "react-query";
-import axios from "axios";
 import dynamic from "next/dynamic";
 import { Reply } from "lucide-react";
 import { useChat } from "@/components/provider/ChatProvider";
+import axios from "@/lib/axios";
 const HeartView = dynamic(() => import("@/components/shared/Chat/HeartView"), {
   ssr: false,
 });
@@ -41,9 +41,7 @@ const ChatMessageWraper = ({
     isError: isAiReplyError,
     refetch: refetchAiReply,
   } = useQuery(["ai-reply", data?.message], async () => {
-    const response = await axios.get(
-      `https://autocommentapi.vercel.app/api/llama2?message=${data?.message}`
-    );
+    const response = await axios.get(`/api/llama2?message=${data?.message}`);
     return response.data;
   });
 

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
 import FilterByDate, {
   DateOption,
 } from "@/components/shared/Dashboard/FilterByDate";
@@ -10,6 +9,7 @@ import dynamic from "next/dynamic";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Loading from "@/components/ui/loading";
 import Error from "@/components/ui/error";
+import axios from "@/lib/axios";
 const Viewchart = dynamic(
   () => import("@/components/shared/Dashboard/Viewchart"),
   {
@@ -61,7 +61,7 @@ const Page: React.FC = () => {
     "fetchView",
     async () => {
       const res = await axios.get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}${country === "all" ? "" : `&filter=country==${country}`}`,
         {

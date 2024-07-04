@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import CircleButton from "@/components/ui/circle-button";
 import { CheckCheck, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { toast } from "sonner";
 import { useQuery } from "react-query";
@@ -21,18 +21,13 @@ import { cn } from "@/lib/utils";
 const DailyTable = ({ ideas, channelDescription }: any) => {
   const { authId } = useAuth();
   const { data: savedideas, refetch } = useQuery("savedideas", async () => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${authId}`
-    );
-    return res.json().then((data) => data.ideas);
+    const res = await axios.get(`/daily/ideas/save/${authId}`);
+    return res.data.ideas;
   });
   const handletoSaveIdea = async (ideaId: any, isAccepted: boolean) => {
-    const response = await axios.post(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/save/${ideaId}/${authId}`,
-      {
-        isAccepted: isAccepted,
-      }
-    );
+    const response = await axios.post(`/daily/ideas/save/${ideaId}/${authId}`, {
+      isAccepted: isAccepted,
+    });
     await response.data;
     refetch();
     if (response.status === 201 && response.data.SaveIdea.isAccepted) {
@@ -47,13 +42,11 @@ const DailyTable = ({ ideas, channelDescription }: any) => {
     isLoading,
     refetch: reloadIdeas,
   } = useQuery("cretae-ideas", async () => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/ai/${authId}?message=${channelDescription}`
+    const res = await axios.get(
+      `/daily/ideas/ai/${authId}?message=${channelDescription}`
     );
-    return res.json().then((data) => {
-      data.ideas;
-      refetch();
-    });
+    refetch();
+    return res.data.ideas;
   });
 
   // if (isLoading) return <div className="">Loading...</div>;

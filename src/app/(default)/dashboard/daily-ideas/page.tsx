@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { useAuth } from "@/components/provider/AuthProvider";
 import DailyCard from "@/components/shared/DailyIdea/daily-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "@/lib/axios";
 const buttonLabels = ["Daily ideas", "Saved ideas", "Deleted ideas"];
 
 const Page = () => {
@@ -16,42 +17,40 @@ const Page = () => {
   const [tab, setTab] = useState<string>("Daily ideas");
 
   const { data: ideas, isLoading } = useQuery("ideas", async () => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/daily/ideas/${authId}`
-    );
-    return res.json().then((data) => data.ideas);
+    const res = await axios.get(`/daily/ideas/${authId}`);
+    return res.data.ideas;
   });
 
   const { data: channelDescription, isLoading: isChannelDescriptionLoading } =
     useQuery("channelDescription", async () => {
-      const res = await fetch(
-        `https://autocommentapi.vercel.app/v1/channels?id=${channelId}&part=snippet&key=AIzaSyBltuLl1h_5USy6dSnD_X9erU6PiOD-xgI`
+      const res = await axios.get(
+        `/channels?id=${channelId}&part=snippet&key=AIzaSyBltuLl1h_5USy6dSnD_X9erU6PiOD-xgI`
       );
-      return res.json().then((data) => data.data.items[0].snippet.description);
+      return res.data.items[0].snippet.description;
     });
 
   const { data: savedideas, isLoading: isSavedIdeasLoading } = useQuery(
     "savedideas",
     async () => {
-      const res = await fetch(
-        `https://autocommentapi.vercel.app/v1/daily/ideas/save/${authId}`
-      );
-      return res.json().then((data) => data.ideas);
+      const res = await axios.get(`/daily/ideas/save/${authId}`);
+      return res.data.ideas;
     }
   );
+
   if (isSavedIdeasLoading && isLoading) return <div>Loading...</div>;
   const filterAndMapIdeas = (ideas: any, condition: any) => {
     const filteredIdeas = ideas?.filter(condition);
     return filteredIdeas?.map((idea: any) => idea.ideaId) ?? [];
   };
 
-  // Example usage:
   const ideaIds = filterAndMapIdeas(savedideas, (idea: any) => idea.isAccepted);
   const rejectedIdeaIds = filterAndMapIdeas(
     savedideas,
     (idea: any) => !idea.isAccepted
   );
+
   if (isChannelDescriptionLoading) return <div>Loading...</div>;
+
   return (
     <main>
       <ScrollArea className="h-[85vh]">

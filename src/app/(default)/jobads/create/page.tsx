@@ -11,6 +11,7 @@ const CollaborationForm = dynamic(
   () => import("@/components/shared/Jobads/CollaborationForm")
 );
 const AdsForm = dynamic(() => import("@/components/shared/Jobads/AdsForm"));
+
 interface TabData {
   id: string;
   label: string;

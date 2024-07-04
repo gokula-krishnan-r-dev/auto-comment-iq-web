@@ -5,7 +5,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 const UserCollaboration = ({ collabData }: any) => {
   return (
@@ -19,10 +18,7 @@ const UserCollaboration = ({ collabData }: any) => {
               account and remove your data from our servers.
             </DialogDescription>
           </DialogHeader>
-          <div className="">
-            
-            
-          </div>
+          <div className=""></div>
         </DialogContent>
       </Dialog>
     </div>

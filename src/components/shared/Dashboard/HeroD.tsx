@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/components/provider/AuthProvider";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { Triangle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { valueFormatter } from "../chart/area-chart";
@@ -13,9 +13,7 @@ const HeroD = ({ subCountData, data }: any) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://autocommentapi.vercel.app/auth/users/${authId}`
-        );
+        const response = await axios.get(`/auth/users/${authId}`);
         setUserData(response.data);
       } catch (error) {
         console.error(error);

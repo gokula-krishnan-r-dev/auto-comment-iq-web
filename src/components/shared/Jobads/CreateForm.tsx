@@ -13,10 +13,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import axios from "axios";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import axios from "@/lib/axios";
 
 // Define your dynamic form data
 const dynamicFormData = [
@@ -113,15 +113,12 @@ const DynamicForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       // Make sure to replace 'your-api-endpoint' with your actual API endpoint
-      const response = await axios.post(
-        "https://autocommentapi.vercel.app/v1/jobads",
-        {
-          ...values,
-          userId: authId,
-          user: authId,
-          type: "job",
-        }
-      );
+      const response = await axios.post("/jobads", {
+        ...values,
+        userId: authId,
+        user: authId,
+        type: "job",
+      });
       if (response.data) {
         console.log("Form submitted successfully:", response.data);
         toast.success("Form submitted successfully");

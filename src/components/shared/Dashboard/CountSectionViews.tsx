@@ -1,6 +1,6 @@
 import { useAuth } from "@/components/provider/AuthProvider";
 import { AreaChart } from "@tremor/react";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { BarChart } from "lucide-react";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
@@ -23,7 +23,7 @@ const CountSectionViews = ({ subCountData, data }: any) => {
     "fetchView",
     async () => {
       const res = await axios.get(
-        `https://autocommentapi.vercel.app/v1/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
+        `/youtube-analytics?startDate=${startDate}&endDate=${endDate}&hero=${heroNames.join(
           ","
         )}`,
         {

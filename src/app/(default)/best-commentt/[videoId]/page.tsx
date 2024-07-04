@@ -1,25 +1,21 @@
 "use client";
 import CommentCard from "@/components/shared/Comments/CommentCard";
 import { Button } from "@/components/ui/button";
-import {
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Card,
-} from "@/components/ui/card";
+import { CardHeader, CardFooter, Card } from "@/components/ui/card";
 import Error from "@/components/ui/error";
 import Loading from "@/components/ui/loading";
+import axios from "@/lib/axios";
 import { useQuery } from "react-query";
 import { toast } from "sonner";
 
 export default function Page() {
   const getNegativeComments = async () => {
-    const response = await fetch(
-      "https://autocommentapi.vercel.app/v1/negative/comments?videoId=Fk-LOFBZo9o"
-    );
-    if (!response.ok) toast.error("Failed to fetch negative comments");
+    const response = await axios.get("/negative/comments?videoId=Fk-LOFBZo9o");
+    if (response.status !== 200) {
+      toast.error("Failed to fetch negative comments");
+    }
 
-    return response.json();
+    return response.data;
   };
   const { data, isLoading, isError } = useQuery(
     "negativeComments",

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/lib/axios";
 import React from "react";
 import { useQuery } from "react-query";
 
@@ -13,7 +13,7 @@ const Descriptionai = ({ des }: any) => {
     async () => {
       try {
         const res = await axios.get(
-          `https://autocommentapi.vercel.app/api/llama13/description?message=${des}&system="re write a YouTube video description in 1 and make it more design and add more link and more look desgin and more sentence"`
+          `/api/llama13/description?message=${des}&system="re write a YouTube video description in 1 and make it more design and add more link and more look desgin and more sentence"`
         );
         return res.data;
       } catch (error) {

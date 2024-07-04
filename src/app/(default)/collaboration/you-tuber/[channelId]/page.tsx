@@ -5,14 +5,15 @@ import Image from "next/image";
 import { useQuery } from "react-query";
 import { useAuth } from "@/components/provider/AuthProvider";
 import React, { useState } from "react";
-import axios from "axios";
+
 import { toast } from "sonner";
 import Loading from "@/components/ui/loading";
 import Error from "@/components/ui/error";
+import axios from "@/lib/axios";
 const fetchSearchResults = async (query: string) => {
   try {
     const response: any = await axios.get(
-      `https://autocommentapi.vercel.app/v1/youtube-analytics/search/channel/${query}`
+      `/youtube-analytics/search/channel/${query}`
     );
     return response.data;
   } catch (error: any) {
@@ -32,23 +33,20 @@ export default function Page({ params }: { params: { channelId: string } }) {
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
   const handleSend = () => {
-    const post = axios.post(
-      "https://autocommentapi.vercel.app/v1/collaboration",
-      {
-        title: "Collaboration Request",
-        message: message,
-        channel: true,
-        channel_id: params.channelId,
-        channel_name: searchResults.list[0][0],
-        channel_logo: searchResults.list[0][2],
-        user: authId,
-        userId: authId,
-        isReviewed: false,
-        isViewed: false,
-        isAccepted: false,
-        isRejected: false,
-      }
-    );
+    const post = axios.post("/collaboration", {
+      title: "Collaboration Request",
+      message: message,
+      channel: true,
+      channel_id: params.channelId,
+      channel_name: searchResults.list[0][0],
+      channel_logo: searchResults.list[0][2],
+      user: authId,
+      userId: authId,
+      isReviewed: false,
+      isViewed: false,
+      isAccepted: false,
+      isRejected: false,
+    });
     post.then((res) => {
       setMessage("");
       if (res.status === 201) {

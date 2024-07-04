@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Grid2X2, ListTodo } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useQuery } from "react-query";
@@ -35,7 +33,6 @@ const buttonLabels = [
 ];
 
 const Page = () => {
-  const [isGrid, setIsGrid] = useState<string>("");
   const [tab, setTab] = useState<number>(0);
   const { authId } = useAuth();
   const { data: chnnaleIds, refetch: refetchChannleIds } = useQuery(

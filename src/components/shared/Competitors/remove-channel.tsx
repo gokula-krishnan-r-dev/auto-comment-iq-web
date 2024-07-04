@@ -4,17 +4,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "@/lib/axios";
 import { Close } from "@radix-ui/react-popover";
-import axios from "axios";
+
 import React from "react";
 import { toast } from "sonner";
 
 const RemoveChannel = ({ chnnaleIds, refetchChannleIds }: any) => {
   const handleAddChannel = async (id: string) => {
     // Implement the logic to remove the channel
-    const response: any = await axios.delete(
-      `https://autocommentapi.vercel.app/v1/competitor/delete/${id}`
-    );
+    const response: any = await axios.delete(`/competitor/delete/${id}`);
     if (response.status === 200) {
       refetchChannleIds();
       toast.success("Channel removed successfully");

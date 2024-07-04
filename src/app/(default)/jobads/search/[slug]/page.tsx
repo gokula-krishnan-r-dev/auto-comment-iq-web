@@ -5,6 +5,7 @@ import JobExtra from "@/components/shared/Job/job-extra";
 import SearchSection from "@/components/shared/Job/search-section";
 import CircleButton from "@/components/ui/circle-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "@/lib/axios";
 import { Bell, Plus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -14,10 +15,8 @@ const Page = () => {
   const [activeJob, setActiveJob] = React.useState<any>(0);
   const { searchTerm } = useJobSearch();
   const getJobads = async (searchTerm = "") => {
-    const res = await fetch(
-      `https://autocommentapi.vercel.app/v1/jobads?q=${searchTerm}`
-    );
-    return res.json();
+    const res = await axios.get(`/jobads?q=${searchTerm}`);
+    return res.data;
   };
 
   const {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/lib/axios";
 import Image from "next/image";
 import React from "react";
 import { useQuery } from "react-query";
@@ -10,9 +10,7 @@ const LiveChatCard = ({ room, index }: any) => {
     isError,
     refetch,
   } = useQuery(["onlineUser", room?.roomId], async () => {
-    const response = await axios.get(
-      `https://autocommentapi.vercel.app/v1/online-user/${room?.roomId}`
-    );
+    const response = await axios.get(`/online-user/${room?.roomId}`);
     return response.data;
   });
   return (
