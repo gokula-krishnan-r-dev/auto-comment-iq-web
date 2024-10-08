@@ -50,7 +50,7 @@ export default function Page({ params }: { params: { videoid: string } }) {
   );
 
   useEffect(() => {
-    if (data) {
+    if (data && data.comment) {
       const fetchResponses = async () => {
         const responses = await Promise.all(
           data?.comment.map(async (comment: any) => {
@@ -71,9 +71,6 @@ export default function Page({ params }: { params: { videoid: string } }) {
       fetchResponses();
     }
   }, [data, language]);
-
-  if (isLoading) return <Loading />;
-  if (isError) return <Error />;
 
   // Define array of comment types
   const commentTypes: { value: CommentType; label: string }[] = [
