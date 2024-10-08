@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useChat } from "@/components/provider/ChatProvider";
 import { DialogClose } from "@/components/ui/dialog";
 import { reFetchChat } from "@/lib/chatLib";
+import { apiUrl } from "@/lib/axios";
 const DialogModel = dynamic(() => import("../Dashboard/DialoagModel"), {
   ssr: false,
 });
@@ -49,13 +50,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
     if (file) {
       const formData = new FormData();
       formData.append("image", file[0]);
-      const response = await fetch(
-        `https://autocommentapi.vercel.app/v1/message/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${apiUrl}/message/upload`, {
+        method: "POST",
+        body: formData,
+      });
       if (response.ok) {
         response.json().then((data) => {
           socket.emit("send-message", {

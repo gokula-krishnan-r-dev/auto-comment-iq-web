@@ -20,6 +20,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const authId = cookie._YId; // Update the type of 'cookie' to include '_YId' property
   const accessToken = cookie.accessToken;
   const channelId = cookie.channelId;
+  console.log(authId, cookie, "authId");
 
   return (
     <AuthContext.Provider value={{ authToken, authId, accessToken, channelId }}>
@@ -27,7 +28,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-``
 export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
   if (!context) {

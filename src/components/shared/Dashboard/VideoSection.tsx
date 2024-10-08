@@ -1,11 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import VideoNav from "./VideoNav";
-import VideoCard from "./VideoCard";
 import { useQuery } from "react-query";
-import SearchVideo from "./SearchVideo";
 import axios from "@/lib/axios";
-export const apiKey = "AIzaSyDAIbJTbNIebqH1aw78RK19q13btquteWM";
+import dynamic from "next/dynamic";
+import Loading from "@/components/ui/loading";
+
+const SearchVideo = dynamic(
+  () => import("@/components/shared/Dashboard/SearchVideo")
+);
+const VideoNav = dynamic(
+  () => import("@/components/shared/Dashboard/VideoNav")
+);
+const VideoCard = dynamic(
+  () => import("@/components/shared/Dashboard/VideoCard")
+);
+
+export const apiKey = "AIzaSyCz3EpTwEZrYOENK5flv2W6DRlKlXF5rjA";
 export const channelId = "UCayJBKourqXMEmkJzGPzrXA";
 export function fetchVideo() {
   const res = axios.get(
@@ -18,12 +28,11 @@ const VideoSection = () => {
   const [comments, setComments] = useState<any>();
   const [shawcomments, setShawComments] = useState<any>(null);
   const [videodetails, setVideoDetails] = useState<any>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const { isLoading, error, data } = useQuery({
     queryKey: ["fetchVideo"],
     queryFn: fetchVideo,
   });
-
-  if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error;
 
@@ -48,8 +57,17 @@ const VideoSection = () => {
     <section className="pt-6 flex">
       <div className="bg-white flex rounded-3xl px-6 py-5 w-full">
         <div className="max-w-full flex-1">
-          <SearchVideo />
-          <VideoNav />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <SearchVideo
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+              <VideoNav />
+            </>
+          )}
           <section className="grid mt-6 grid-cols-2 gap-6">
             {data?.data?.items?.map((video: any, index: any) => {
               const videoInfo = {

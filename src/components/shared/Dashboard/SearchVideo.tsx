@@ -2,9 +2,7 @@ import CircleButton from "@/components/ui/circle-button";
 import { Search, X } from "lucide-react";
 import React, { useState } from "react";
 
-const SearchVideo = ({ handleSearch }: any) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
+const SearchVideo = ({ handleSearch, setSearchQuery, searchQuery }: any) => {
   const handleKeyPress = (e: any) => {
     setSearchQuery(e.target.value);
     if (e.key === "Enter") {

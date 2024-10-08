@@ -39,7 +39,7 @@ export function reFetchChat({
   setChat: any;
   roomId: string;
 }) {
-  const response = axios.get(`/api/messages/${roomId}`);
+  const response = axios.get(`/api/message/${roomId}`);
   response.then((res) => {
     setChat(res.data);
   });

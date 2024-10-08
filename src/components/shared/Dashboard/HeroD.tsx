@@ -3,8 +3,6 @@ import { useAuth } from "@/components/provider/AuthProvider";
 import axios from "@/lib/axios";
 import { Triangle } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { valueFormatter } from "../chart/area-chart";
-import { AreaChart } from "@tremor/react";
 
 const HeroD = ({ subCountData, data }: any) => {
   const { authId } = useAuth();
@@ -36,32 +34,64 @@ const HeroD = ({ subCountData, data }: any) => {
         </div>
         <div className=""></div>
       </div>
-      <div className="bg-white flex-1 rounded-3xl px-6 py-4">
+      <div className="bg-white flex items-center gap-4 flex-1 rounded-3xl px-6 py-4">
         <div className="">
-          <div className="flex items-center gap-2">
-            <img
-              src={subCountData?.user?.[1]?.count}
-              className="bg-gray-100 w-16 h-16 rounded-full"
-              alt=""
-            />
-            <h2 className="text-lg font-semibold">
-              {subCountData?.user?.[0]?.count}
-            </h2>
-          </div>
-        </div>
-        <div className=" items-start gap-6">
           <div className="">
-            <div className="flex py-2 flex-col">
-              <div className="flex items-center gap-2">
-                <h2 className="text-3xl font-bold">
-                  {subCountData?.counts?.[0]?.count}
-                </h2>
-                <UpDown count={data?.rows?.[0]?.[6]} />
-              </div>
-              <p className="text-sm font-medium text-gray-400"> Subscribers </p>
+            <div className="flex items-center gap-2">
+              <img
+                src={subCountData?.user?.[1]?.count}
+                className="bg-gray-100 w-16 h-16 rounded-full"
+                alt=""
+              />
+              <h2 className="text-lg font-semibold">
+                {subCountData?.user?.[0]?.count}
+              </h2>
             </div>
           </div>
-        </div>
+          <div className=" items-start gap-6">
+            <div className="">
+              <div className="flex py-2 flex-col">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-3xl font-bold">
+                    {subCountData?.counts?.[0]?.count}
+                  </h2>
+                  <UpDown count={data?.rows?.[0]?.[6]} />
+                </div>
+                <p className="text-sm font-medium text-gray-400">
+                  {" "}
+                  Subscribers{" "}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>{" "}
+        <div className="">
+          <div className="">
+            <div className="flex items-center gap-2">
+              <img
+                src={subCountData?.user?.[1]?.count}
+                className="bg-gray-100 w-16 h-16 rounded-full"
+                alt=""
+              />
+              <h2 className="text-lg font-semibold">
+                {subCountData?.user?.[0]?.count}
+              </h2>
+            </div>
+          </div>
+          <div className=" items-start gap-6">
+            <div className="">
+              <div className="flex py-2 flex-col">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-3xl font-bold">
+                    {subCountData?.counts?.[1]?.count}
+                  </h2>
+                  <UpDown count={data?.rows?.[0]?.[2]} />
+                </div>
+                <p className="text-sm font-medium text-gray-400"> views </p>
+              </div>
+            </div>
+          </div>
+        </div> 
       </div>
     </section>
   );

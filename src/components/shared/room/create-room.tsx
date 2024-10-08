@@ -41,7 +41,7 @@ const CreateRoom: React.FC = () => {
     ["search-room", query],
     async () => {
       const response = await axios.get(
-        `/search?order=date&part=snippet&q=${query}&key=AIzaSyDAIbJTbNIebqH1aw78RK19q13btquteWM&maxResults=200`
+        `/search?order=date&part=snippet&q=${query}&key=AIzaSyCz3EpTwEZrYOENK5flv2W6DRlKlXF5rjA&maxResults=200`
       );
       return response.data.data;
     }
@@ -72,8 +72,8 @@ const CreateRoom: React.FC = () => {
     const url = `/channels?part=snippet&key=${apiKey}&id=${channelId}`;
 
     try {
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await axios.get(url);
+      const data = await response.data;
       return data?.data?.items[0]?.snippet?.thumbnails?.high?.url;
     } catch (error: any) {
       throw new Error("Error fetching channel logo: " + error.message);
@@ -102,7 +102,7 @@ const CreateRoom: React.FC = () => {
       // Make a POST request to create a room
       const response = await axios.post("/create-room", roomData);
       if (response.data) {
-        router.push("/livehat/" + videoId);
+        // router.push("/livehat/" + videoId);
       }
     } catch (error: any) {
       // Handle errors

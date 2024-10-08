@@ -1,15 +1,23 @@
 "use client";
 import { useAuth } from "@/components/provider/AuthProvider";
-import CountSectionViews from "@/components/shared/Dashboard/CountSectionViews";
-import HeroD from "@/components/shared/Dashboard/HeroD";
-import RoomStatus from "@/components/shared/Dashboard/RoomStatus";
-import VideoSection from "@/components/shared/Dashboard/VideoSection";
 import Error from "@/components/ui/error";
 import Loading from "@/components/ui/loading";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import axios from "axios";
+import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
+
+const HeroD = dynamic(() => import("@/components/shared/Dashboard/HeroD"));
+const RoomStatus = dynamic(
+  () => import("@/components/shared/Dashboard/RoomStatus")
+);
+const CountSectionViews = dynamic(
+  () => import("@/components/shared/Dashboard/CountSectionViews")
+);
+const VideoSection = dynamic(
+  () => import("@/components/shared/Dashboard/VideoSection")
+);
 
 const Page = () => {
   const [subCount, setSubCount] = React.useState<any>(0);

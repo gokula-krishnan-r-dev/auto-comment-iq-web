@@ -1,5 +1,4 @@
 import { useAuth } from "@/components/provider/AuthProvider";
-import { useRouter } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
 const ChatMessage = dynamic(() => import("./ChatMessage"));
 const ChatHeader = dynamic(() => import("./ChatHeader"));
@@ -38,7 +37,6 @@ const ChatWindow = ({ user, room, authId }) => {
   const [isOnline, setIsOnline] = useState(false);
   const [ads, setAds] = useState([]);
   const [showAds, setShowAds] = useState(true);
-  const navigate = useRouter();
   const fileRef = useRef();
   function checkIsAuthor() {
     const userChannelId = channelId;
@@ -123,6 +121,8 @@ const ChatWindow = ({ user, room, authId }) => {
   function handleForm(e) {
     e.preventDefault();
     if (!message) return toast.error("Please enter a message");
+    console.log(message, authId, roomId, "gokul");
+
     if (isReplying?.[0]?.message) {
       socket.emit("send-message", {
         message: isReplying?.[0]?.message,
